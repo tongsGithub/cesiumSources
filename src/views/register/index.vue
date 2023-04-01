@@ -27,6 +27,7 @@
 </template>
  
 <script>
+import {registerAPI} from '@/api'
 export default {
    name: 'my_reg',
    data() {
@@ -77,9 +78,14 @@ export default {
    methods: {//注册点击事件
       registerFn(){
          //js form兜底校验 
-         this.$refs.form.validate(valid => {
+         this.$refs.form.validate(async valid => {
             if (valid){//通过校验
-               console.log(this.form)
+               console.log(this.form);
+               const { data:res } = await registerAPI(this.regForm)
+               console.log(res)
+               if(res.code !==0) return this.$message.error(res.message);//注册失败
+               this.$message.success(res.message);
+               this.$router.push('/login');
             }
              else{
                return false ;//阻止默认提交行为
@@ -87,12 +93,7 @@ export default {
          })
       }
    },
-   created() {
-      axios({
-         data: this.form
-      })
-   },
-
+   
 }
 </script>
 <style lang="less" scoped>

@@ -17,7 +17,7 @@ export default {
 <style lang="less" scoped>
   .reg-container{
     width:100%;
-    height:100%;
-    background-color:hsl(202, 69%, 43%);
+    height:100;
+    background-color:rgb(17, 219, 255)
   }
 </style>
