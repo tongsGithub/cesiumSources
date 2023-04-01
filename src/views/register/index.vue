@@ -4,7 +4,7 @@
       <div class="reg-box">
          <div class="title-font">欢迎您注册智慧校园数字管理系统</div>
          <div class="input-reg">
-         <el-form  :model="form" :rules="rulesObj">
+         <el-form ref="form" :model="form" :rules="rulesObj">
             <el-form-item prop="username">
                <el-input v-model="form.username"  placeholder="请输入用户名" />
             </el-form-item>
@@ -15,7 +15,7 @@
                <el-input type="password" v-model="form.repassword"  placeholder="请再次输入密码" />
             </el-form-item>
             <el-form-item>
-               <el-button class="btu-reg" type="primary" @click="onSubmit">注册</el-button>
+               <el-button class="btu-reg" type="primary" @click="registerFn">注册</el-button>
                <el-link  type="warning">去登录</el-link>
             </el-form-item>
          </el-form> 
@@ -72,6 +72,19 @@ export default {
 
 
 
+      }
+   },
+   methods: {//注册点击事件
+      registerFn(){
+         //js form兜底校验 
+         this.$refs.form.validate(valid => {
+            if (valid){//通过校验
+               console.log(this.form)
+            }
+             else{
+               return false ;//阻止默认提交行为
+            }
+         })
       }
    },
    created() {
