@@ -1,15 +1,26 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import HelloWorld from '../components/cesium/HelloWorld'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+const routes = [{
+  path: '/reg',
+  component: () => import('@/views/register')
+},
+{
+  path: '/login',
+  component: () => import('@/views/login')
+},
+{
+  path: '/index',
+  name: 'HelloWorld',
+  component: HelloWorld
+}
+]
+
+const router = new VueRouter({
+  routes
 })
+export default router
+
