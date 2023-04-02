@@ -4,21 +4,51 @@
 
             <div id="cesiumContainer">
                 <div class="topUI"></div>
-                <div class="map3d-bt0" v-on:click="showinfo">
-                    <h2>安全管理</h2>
+                
+                    <el-button class="map3d-bt0" @click="(show1=false,show2=false,show3=false,show4=false,show=!show)"><h2>安全管理</h2></el-button>
+                    <el-button class="map3d-bt1" @click="(show=false,show2=false,show3=false,show4=false,show1=!show1)"><h2>教学管理</h2></el-button>
+                    <el-button class="map3d-bt2" @click="(show=false,show1=false,show3=false,show4=false,show2=!show2)"><h2>运维管理</h2></el-button>
+                    <el-button class="map3d-bt3" @click="(show=false,show1=false,show2=false,show4=false,show3=!show3)"><h2>能源管理</h2></el-button>
+                    <el-button class="map3d-bt4" @click="(show=false,show1=false,show2=false,show3=false,show4=!show3)"><h2>应急管理</h2></el-button>
+                <div>
+
+
+
+                    <div style="display: ">
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show" class="transition-box-left">安全管理</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show" class="transition-box-right">.el-fade-in-linear</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show1" class="transition-box-left">教学管理</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show1" class="transition-box-right">.el-fade-in-linear</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show2" class="transition-box-left">运维管理</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show2" class="transition-box-right">.el-fade-in-linear</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show3" class="transition-box-left">能源管理</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show3" class="transition-box-right">.el-fade-in-linear</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show4" class="transition-box-left">应急管理</div>
+                        </transition>
+                        <transition name="el-fade-in-linear">
+                            <div v-show="show4" class="transition-box-right">.el-fade-in-linear</div>
+                        </transition>
+                        
+                    </div>
                 </div>
-                <div class="map3d-bt1">
-                    <h2>教学管理</h2>
-                </div>
-                <div class="map3d-bt2">
-                    <h2>运维管理</h2>
-                </div>
-                <div class="map3d-bt3">
-                    <h2>能源管理</h2>
-                </div>
-                <div class="map3d-bt4">
-                    <h2>应急管理</h2>
-                </div>
+
                 <div class="btu-close" v-on:click="butClose">
                     <h2></h2>
                 </div>
@@ -39,9 +69,6 @@ const Cesium = window.Cesium;
 export default {
     name: 'mycesium',
     methods: {
-        showinfo() {
-            alert("我是安全模块")
-        },
         butClose() {//退出登录click
             //确认退出提示框
             this.$confirm('既将退出系统, 是否继续?', '系统提示', {
@@ -50,22 +77,30 @@ export default {
                 type: 'warning'
             }).then(() => {
                 //清楚token
-                this.$store.commit('updateToken','')
+                this.$store.commit('updateToken', '')
                 //跳转页面
                 this.$router.push('/login')
-                
+
             }).catch(() => {//取消
             });
         }
     },
     mounted() {
         initViewer(cesiumContainer);
-        // CesiumCamera.myFlyTo();
+        //CesiumCamera.myFlyTo();
         // CesiumCamera.setView();
         addModel();
 
 
+
     },
+    data: () => ({
+        show:false,
+        show1:false,
+        show2:false,
+        show3:false,
+        show4:false,
+    })
 }
 
 //系统功能设计
@@ -93,13 +128,13 @@ export default {
             height: 32px;
             width: 100px;
             position: absolute;
-            left: 20%;
+            left: 22%;
             bottom: 50px;
             //background: #303336 url(../../Img/home/清空.png); 
             border: 1px solid #9fd3e0;
             background-size: cover;
             background-color: #4e9ce6;
-            z-index: 6;
+            z-index: 2;
             cursor: pointer;
             opacity: 80%
         }
@@ -114,7 +149,7 @@ export default {
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
-            z-index: 6;
+            z-index: 2;
             cursor: pointer;
             opacity: 80%
         }
@@ -129,7 +164,7 @@ export default {
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
-            z-index: 6;
+            z-index: 2;
             cursor: pointer;
             opacity: 80%
         }
@@ -144,7 +179,7 @@ export default {
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
-            z-index: 6;
+            z-index: 2;
             cursor: pointer;
             opacity: 80%
         }
@@ -159,7 +194,7 @@ export default {
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
-            z-index: 6;
+            z-index: 2;
             cursor: pointer;
             opacity: 80%
         }
@@ -215,9 +250,9 @@ export default {
 
         h2 {
             color: #fff;
-            font-size: 20px;
-            margin: 10px;
-            margin-top: 2px;
+            font-size: 18px;
+            margin-top: -5px;
+            margin-left: -7px;
         }
 
         h2:hover {
@@ -230,4 +265,41 @@ export default {
 
     }
 
-}</style>
+}
+
+.transition-box-left {
+    margin-bottom: 10px;
+    width: 18%;
+    height: 70%;
+    top:15%;
+    border-radius: 4px;
+    background-color: #409EFF;
+    text-align: center;
+    color: #fff;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 80%
+}
+.transition-box-right{
+    margin-bottom: 10px;
+    width: 18%;
+    height: 70%;
+    right: 0px;
+    top:15%;
+    border-radius: 4px;
+    background-color: #409EFF;
+    text-align: center;
+    color: #fff;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 80%
+}
+</style>

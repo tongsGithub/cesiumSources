@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import store from '@/store'
 
 /**
  * 注册接口
@@ -39,7 +40,10 @@ export const loginAPI = ({ username, password }) => {
  */
 export const getUserInfoAPI = () => {
   return request({
-    url: '/my/userinfo'
+    url: '/my/userinfo',
+    headers: {
+      Authorization:store.state.token
+    }
   })
 }
 
