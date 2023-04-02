@@ -18,7 +18,7 @@
                <el-input type="password" v-model="form.password"  placeholder="请输入密码" />
             </el-form-item>
             <el-form-item>
-               <el-button class="btu-login" type="primary" @click="loginisterFn">登录</el-button>
+               <el-button class="btu-login" type="primary" @click="loginFn">登录</el-button>
                <el-link  href="http://localhost:9090/#/reg"  type="warning">去注册</el-link>
             </el-form-item>
          </el-form> 
@@ -32,14 +32,14 @@
 </template>
 
 <script>
+import { loginAPI } from '@/api';
 export default {
   name: 'my_login',
   data(){
     return{
-      form:{//
+      form:{//登录表单返回数据
       username:'',
       password:'',
-      repassword:''
     },
     rulesObj:{//登录表单规则校验对象
       username:[
@@ -62,10 +62,18 @@ export default {
       }
   },
   methods: {//注册点击事件
-    loginisterFn(){//兜底校验
+    loginFn(){//兜底校验
       this.$refs.form.validate(async valid => {
         if(valid){//通过校验
-          console.log('test success')
+          const {data:res} = await loginAPI(this.form);
+          if(res.code !==0)//用户提示
+            return this.$message.error(res.message);
+          else{
+            //登录成功
+            this.$message.success(res.message);
+            this.$router.push('/index');
+          }
+          console.log(res);
         }
         else{//校验失败，阻止默认提交行为
           return false;
