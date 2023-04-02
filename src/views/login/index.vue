@@ -33,6 +33,8 @@
 
 <script>
 import { loginAPI } from '@/api';
+import {mapMutations} from 'vuex';
+import { timeouts } from 'retry';
 export default {
   name: 'my_login',
   data(){
@@ -62,6 +64,7 @@ export default {
       }
   },
   methods: {//注册点击事件
+    ...mapMutations(['updateToken']),
     loginFn(){//兜底校验
       this.$refs.form.validate(async valid => {
         if(valid){//通过校验
@@ -71,9 +74,12 @@ export default {
           else{
             //登录成功
             this.$message.success(res.message);
+            
+            this.updateToken(res.token)
+            console.log(res);
             this.$router.push('/index');
           }
-          console.log(res);
+          //console.log(res);
         }
         else{//校验失败，阻止默认提交行为
           return false;

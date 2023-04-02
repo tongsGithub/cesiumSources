@@ -4,11 +4,24 @@
 
             <div id="cesiumContainer">
                 <div class="topUI"></div>
-                <div class="map3d-bt0" v-on:click="showinfo"><h2>安全管理</h2></div>
-                <div class="map3d-bt1"><h2>教学管理</h2></div>
-                <div class="map3d-bt2"><h2>运维管理</h2></div>
-                <div class="map3d-bt3"><h2>能源管理</h2></div>
-                <div class="map3d-bt4"><h2>应急管理</h2></div>
+                <div class="map3d-bt0" v-on:click="showinfo">
+                    <h2>安全管理</h2>
+                </div>
+                <div class="map3d-bt1">
+                    <h2>教学管理</h2>
+                </div>
+                <div class="map3d-bt2">
+                    <h2>运维管理</h2>
+                </div>
+                <div class="map3d-bt3">
+                    <h2>能源管理</h2>
+                </div>
+                <div class="map3d-bt4">
+                    <h2>应急管理</h2>
+                </div>
+                <div class="btu-close" v-on:click="butClose">
+                    <h2></h2>
+                </div>
             </div>
         </div>
         <div class="element_bt">
@@ -26,8 +39,23 @@ const Cesium = window.Cesium;
 export default {
     name: 'mycesium',
     methods: {
-        showinfo(){
-          alert("我是安全模块")  
+        showinfo() {
+            alert("我是安全模块")
+        },
+        butClose() {//退出登录click
+            //确认退出提示框
+            this.$confirm('既将退出系统, 是否继续?', '系统提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                //清楚token
+                this.$store.commit('updateToken','')
+                //跳转页面
+                this.$router.push('/login')
+                
+            }).catch(() => {//取消
+            });
         }
     },
     mounted() {
@@ -73,7 +101,7 @@ export default {
             background-color: #4e9ce6;
             z-index: 6;
             cursor: pointer;
-            opacity:80%
+            opacity: 80%
         }
 
         .map3d-bt1 {
@@ -83,13 +111,12 @@ export default {
             position: absolute;
             left: 32.5%;
             bottom: 50px;
-            //background: #303336 url(../../Img/home/清空.png); 
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
             z-index: 6;
             cursor: pointer;
-            opacity:80%
+            opacity: 80%
         }
 
         .map3d-bt2 {
@@ -99,13 +126,12 @@ export default {
             position: absolute;
             left: 45%;
             bottom: 50px;
-            //background: #303336 url(../../Img/home/清空.png); 
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
             z-index: 6;
             cursor: pointer;
-            opacity:80%
+            opacity: 80%
         }
 
         .map3d-bt3 {
@@ -115,13 +141,12 @@ export default {
             position: absolute;
             left: 57.5%;
             bottom: 50px;
-            //background: #303336 url(../../Img/home/清空.png); 
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
             z-index: 6;
             cursor: pointer;
-            opacity:80%
+            opacity: 80%
         }
 
         .map3d-bt4 {
@@ -131,13 +156,27 @@ export default {
             position: absolute;
             left: 70%;
             bottom: 50px;
-            //background: #303336 url(../../Img/home/清空.png); 
             border: 1px solid #9fd3e0;
             background-color: #4e9ce6;
             background-size: cover;
             z-index: 6;
             cursor: pointer;
-            opacity:80%
+            opacity: 80%
+        }
+
+        .btu-close {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: 10px;
+            top: 30px;
+            background-image: url("../../assets/close.png");
+            background-repeat: round;
+            //pointer-events: none;
+            z-index: 2;
+            opacity: 60%;
+            border-radius: 10px;
+            background-color: #0099CC;
         }
 
         .map3d-bt0:hover,
@@ -145,12 +184,18 @@ export default {
         .map3d-bt2:hover,
         .map3d-bt3:hover,
         .map3d-bt4:hover {
-            color: #0482a8;
             fill: #534545;
-            //background: #48b url(../../assets/build/第一食堂.gltf);
             background-size: cover;
             border-color: rgb(9, 151, 186);
-            box-shadow: 0 0 20px #0b5ae3;
+            box-shadow: 0 0 10px #0b5ae3;
+        }
+
+        .btu-close:hover {
+            fill: #534545;
+            background-size: cover;
+            border-color: rgb(3, 31, 37);
+            box-shadow: 0 0 20px #031430;
+            border-radius: 20px;
         }
 
         .topUI {
@@ -161,20 +206,22 @@ export default {
             padding: 0;
             left: 0;
             top: -4px;
-            background-image: url("../../assets/图片4.png");
+            background-image: url("../../assets/toplogo.png");
             background-repeat: round;
             pointer-events: none;
             z-index: 2;
-            opacity:80%
+            opacity: 80%
         }
-        h2{
+
+        h2 {
             color: #fff;
             font-size: 20px;
             margin: 10px;
             margin-top: 2px;
         }
-        h2:hover{
-            color: #1ba6d0;
+
+        h2:hover {
+            color: #324766;
         }
 
 
@@ -183,5 +230,4 @@ export default {
 
     }
 
-}
-</style>
+}</style>
