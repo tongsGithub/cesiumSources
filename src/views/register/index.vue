@@ -80,9 +80,10 @@ export default {
          //js form兜底校验 
          this.$refs.form.validate(async valid => {
             if (valid){//通过校验
-               console.log(this.form);
-               const { data:res } = await registerAPI(this.regForm)
-               console.log(res)
+               console.log('通过验证')
+               console.log(this.form.username)
+               const { data:res } = await registerAPI(this.form)
+               console.log('success')
                if(res.code !==0) return this.$message.error(res.message);//注册失败
                this.$message.success(res.message);
                this.$router.push('/login');
