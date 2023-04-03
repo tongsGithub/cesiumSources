@@ -1,52 +1,42 @@
 <template>
     <div class="home">
         <div class="home_cesium">
-
             <div id="cesiumContainer">
                 <div class="topUI"></div>
-                
-                    <el-button class="map3d-bt0" @click="(show1=false,show2=false,show3=false,show4=false,show=!show)"><h2>安全管理</h2></el-button>
-                    <el-button class="map3d-bt1" @click="(show=false,show2=false,show3=false,show4=false,show1=!show1)"><h2>教学管理</h2></el-button>
-                    <el-button class="map3d-bt2" @click="(show=false,show1=false,show3=false,show4=false,show2=!show2)"><h2>运维管理</h2></el-button>
-                    <el-button class="map3d-bt3" @click="(show=false,show1=false,show2=false,show4=false,show3=!show3)"><h2>能源管理</h2></el-button>
-                    <el-button class="map3d-bt4" @click="(show=false,show1=false,show2=false,show3=false,show4=!show3)"><h2>应急管理</h2></el-button>
+                <div id="transitionBoxLeft" class="transition-box-left">
+                    <h2>安全管理模块</h2>
+                    <div id="transition" class="transition-box-left-1"></div>
+                    <div id="pie_show" class="transition-box-left-2"></div>
+                </div>
+                <div class="transition-box-right">
+                    <h2>监控视频</h2>
+                    
+                    <div class="transition-box-right-1">
+                        <h3>视角一</h3>
+                    </div>
+                </div>
+                <button id="bt0" class="map3d-bt0" v-on:click="CloseLeft0">
+                    <h2 id="bt0h2" class="map3d-bt0-h2">安全管理</h2>
+                </button>
+
+                <button id="bt1" class="map3d-bt1" v-on:click="CloseLeft1">
+                    <h2 id="bt1h2">教学管理</h2>
+                </button>
+
+                <button id="bt2" class="map3d-bt2" v-on:click="CloseLeft2">
+                    <h2 id="bt2h2">运维管理</h2>
+                </button>
+
+                <button id="bt3" class="map3d-bt3" v-on:click="CloseLeft3">
+                    <h2 id="bt3h2">能源管理</h2>
+                </button>
+
+                <button id="bt4" class="map3d-bt4" v-on:click="CloseLeft4">
+                    <h2 id="bt4h2">应急管理</h2>
+                </button>
+
                 <div>
 
-
-
-                    <div style="display: ">
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show" class="transition-box-left">安全管理</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show" class="transition-box-right">.el-fade-in-linear</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show1" class="transition-box-left">教学管理</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show1" class="transition-box-right">.el-fade-in-linear</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show2" class="transition-box-left">运维管理</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show2" class="transition-box-right">.el-fade-in-linear</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show3" class="transition-box-left">能源管理</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show3" class="transition-box-right">.el-fade-in-linear</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show4" class="transition-box-left">应急管理</div>
-                        </transition>
-                        <transition name="el-fade-in-linear">
-                            <div v-show="show4" class="transition-box-right">.el-fade-in-linear</div>
-                        </transition>
-                        
-                    </div>
                 </div>
 
                 <div class="btu-close" v-on:click="butClose">
@@ -64,6 +54,7 @@
 import { initViewer } from '@/assets/cesiumjs/index';
 import CesiumCamera from '@/assets/cesiumjs/cesiumCamera';
 import { addModel } from '@/assets/cesiumjs/AddModel';
+import * as echarts from 'echarts';
 
 const Cesium = window.Cesium;
 export default {
@@ -79,27 +70,199 @@ export default {
                 //清楚token
                 this.$store.commit('updateToken', '')
                 //跳转页面
-                this.$router.push('/login')
+                this.$router.push('/')
 
             }).catch(() => {//取消
             });
-        }
+        },
+        CloseLeft0(){
+            document.getElementById("transitionBoxLeft").style.display="inline";
+            document.getElementById("bt1").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt1h2").style.color = "#ffffff";
+            document.getElementById("bt0").style.boxShadow = "0 0 20px #0b5ae3"
+            document.getElementById("bt0h2").style.color = "#324766";
+            document.getElementById("bt2").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt2h2").style.color = "#ffffff";
+            document.getElementById("bt3").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt3h2").style.color = "#ffffff";
+            document.getElementById("bt4").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt4h2").style.color = "#ffffff"; 
+        },
+        CloseLeft1(){
+            document.getElementById("transitionBoxLeft").style.display="none";
+            document.getElementById("bt0").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt0h2").style.color = "#ffffff";
+            document.getElementById("bt1").style.boxShadow = "0 0 20px #0b5ae3"
+            document.getElementById("bt1h2").style.color = "#324766";
+            document.getElementById("bt2").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt2h2").style.color = "#ffffff";
+            document.getElementById("bt3").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt3h2").style.color = "#ffffff";
+            document.getElementById("bt4").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt4h2").style.color = "#ffffff";
+        },
+        CloseLeft2(){
+            document.getElementById("bt1").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt1h2").style.color = "#ffffff";
+            document.getElementById("bt2").style.boxShadow = "0 0 20px #0b5ae3"
+            document.getElementById("bt2h2").style.color = "#324766";
+            document.getElementById("bt0").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt0h2").style.color = "#ffffff";
+            document.getElementById("bt3").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt3h2").style.color = "#ffffff";
+            document.getElementById("bt4").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt4h2").style.color = "#ffffff";
+        },
+        CloseLeft3(){
+            document.getElementById("bt2").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt2h2").style.color = "#ffffff";
+            document.getElementById("bt3").style.boxShadow = "0 0 20px #0b5ae3"
+            document.getElementById("bt3h2").style.color = "#324766";
+            document.getElementById("bt0").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt0h2").style.color = "#ffffff";
+            document.getElementById("bt1").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt1h2").style.color = "#ffffff";
+            document.getElementById("bt4").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt4h2").style.color = "#ffffff";
+        },
+        CloseLeft4(){
+            document.getElementById("bt3").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt3h2").style.color = "#ffffff";
+            document.getElementById("bt4").style.boxShadow = "0 0 20px #0b5ae3"
+            document.getElementById("bt4h2").style.color = "#324766";
+            document.getElementById("bt0").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt0h2").style.color = "#ffffff";
+            document.getElementById("bt1").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt1h2").style.color = "#ffffff";
+            document.getElementById("bt2").style.boxShadow ="0 0 0px #0b5ae3"; 
+            document.getElementById("bt2h2").style.color = "#ffffff";
+        },
+
+        initCurveFn() {
+            var myChart = echarts.init(document.getElementById('transition'));
+            // 绘制图表
+            myChart.setOption({
+                title: {
+                    text: '校园出入人数',
+                    left: 'center',
+                    top: '10'
+                },
+                legend: {
+                    data: ['出校人数', '入校人数'],
+                    top: '40'
+                },
+                xAxis: {
+                    name: '日期',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: [{
+                    name: '人数',
+                    type: 'value'
+                }],
+                series: [
+                    {
+                        name: '出校人数',
+                        data: [102, 112, 108, 132, 157, 251, 221],
+                        type: 'line',
+                        smooth: true,
+                        areaStyle: {
+                            color: '#fd956a'
+                        }
+                    },
+                    {
+                        name: '入校人数',
+                        data: [210, 187, 143, 108, 100, 136, 120],
+                        type: 'line',
+                        smooth: true,
+                        areaStyle: {
+                            color: '#00ce68'
+                        }
+                    }
+                ]
+            });
+        },
+        picChartFn() {
+            const oPie = echarts.init(document.getElementById('pie_show'))
+            const oPieopt = {
+                title: {
+                    top: 10,
+                    text: '数量比',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item', // 在图形上才会触发提示
+                    formatter: '{a} <br/>{b} : {c} ({d}%)' // 提示的文字显示的格式
+                    // a: 系列名
+                    // b: 数据名
+                    // c: 数值
+                    // d: 百分比 (只有饼状图生效)
+                },
+                color: ['#5885e8', '#13cfd5', '#00ce68', '#ff9565'], // 系列颜色
+                legend: { // 图例组件
+                    x: 'center',
+                    top: 65,
+                    data: ['奇趣事', '会生活', '爱旅行', '趣美味'] // 每个部分对应的数据名(要和series里name对应)
+                },
+                toolbox: { // 工具箱
+                    show: true,
+                    x: 'center',
+                    top: 35,
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        magicType: {
+                            show: true,
+                            type: ['pie', 'funnel'],
+                            option: {
+                                funnel: {
+                                    x: '25%',
+                                    width: '50%',
+                                    funnelAlign: 'left',
+                                    max: 1548
+                                }
+                            }
+                        },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: ['45%', '60%'],
+                        center: ['50%', '65%'],
+                        data: [
+                            { value: 300, name: '奇趣事' },
+                            { value: 100, name: '会生活' },
+                            { value: 260, name: '爱旅行' },
+                            { value: 180, name: '趣美味' }
+                        ]
+                    }
+                ]
+            }
+            oPie.setOption(oPieopt)
+        },
+
+
+
     },
     mounted() {
         initViewer(cesiumContainer);
         //CesiumCamera.myFlyTo();
         // CesiumCamera.setView();
         addModel();
-
+        this.initCurveFn();//校园出入人数表
+        //this.picChartFn();
 
 
     },
     data: () => ({
-        show:false,
-        show1:false,
-        show2:false,
-        show3:false,
-        show4:false,
+        show: false,
+        show1: false,
+        show2: false,
+        show3: false,
+        show4: false,
     })
 }
 
@@ -126,23 +289,25 @@ export default {
         .map3d-bt0 {
             border-radius: 10px;
             height: 32px;
-            width: 100px;
+            width: 10%;
             position: absolute;
-            left: 22%;
+            left: 20%;
             bottom: 50px;
-            //background: #303336 url(../../Img/home/清空.png); 
             border: 1px solid #9fd3e0;
-            background-size: cover;
             background-color: #4e9ce6;
             z-index: 2;
             cursor: pointer;
-            opacity: 80%
+            opacity: 80%;
+            box-shadow: 0 0 20px #0b5ae3;
+        }
+        .map3d-bt0-h2{
+            color:#324766
         }
 
         .map3d-bt1 {
             border-radius: 10px;
             height: 32px;
-            width: 100px;
+            width: 10%;
             position: absolute;
             left: 32.5%;
             bottom: 50px;
@@ -157,7 +322,7 @@ export default {
         .map3d-bt2 {
             border-radius: 10px;
             height: 32px;
-            width: 100px;
+            width: 10%;
             position: absolute;
             left: 45%;
             bottom: 50px;
@@ -172,7 +337,7 @@ export default {
         .map3d-bt3 {
             border-radius: 10px;
             height: 32px;
-            width: 100px;
+            width: 10%;
             position: absolute;
             left: 57.5%;
             bottom: 50px;
@@ -187,7 +352,7 @@ export default {
         .map3d-bt4 {
             border-radius: 10px;
             height: 32px;
-            width: 100px;
+            width: 10%;
             position: absolute;
             left: 70%;
             bottom: 50px;
@@ -207,7 +372,6 @@ export default {
             top: 30px;
             background-image: url("../../assets/close.png");
             background-repeat: round;
-            //pointer-events: none;
             z-index: 2;
             opacity: 60%;
             border-radius: 10px;
@@ -219,10 +383,7 @@ export default {
         .map3d-bt2:hover,
         .map3d-bt3:hover,
         .map3d-bt4:hover {
-            fill: #534545;
-            background-size: cover;
-            border-color: rgb(9, 151, 186);
-            box-shadow: 0 0 10px #0b5ae3;
+            box-shadow: 0 0 20px #0b5ae3;
         }
 
         .btu-close:hover {
@@ -251,8 +412,8 @@ export default {
         h2 {
             color: #fff;
             font-size: 18px;
-            margin-top: -5px;
-            margin-left: -7px;
+            margin-top: 0px;
+            margin-left: 0px;
         }
 
         h2:hover {
@@ -269,14 +430,65 @@ export default {
 
 .transition-box-left {
     margin-bottom: 10px;
+    width: 40%;
+    height: 70%;
+    top: 15%;
+    border-radius: 10px;
+    background-color: #4e9ce6;
+    text-align: center;
+    color: #ffffff;
+    padding: 7px;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 80%;
+    
+}
+
+.transition-box-left-1 {
+    width: 98%;
+    height: 50%;
+    top: 49%;
+    left: 1%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 80%;
+}
+.transition-box-left-2 {
+    width: 98%;
+    height: 40%;
+    top: 8%;
+    left: 1%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 80%;
+}
+
+.transition-box-right {
+    margin-bottom: 10px;
     width: 18%;
     height: 70%;
-    top:15%;
-    border-radius: 4px;
-    background-color: #409EFF;
+    right: 0px;
+    top: 15%;
+    border-radius: 10px;
+    background-color: #4e9ce6;
     text-align: center;
-    color: #fff;
-    padding: 40px 20px;
+    color: #ffffff;
+    padding: 7px;
     box-sizing: border-box;
     position: absolute;
     background-repeat: round;
@@ -284,22 +496,21 @@ export default {
     z-index: 2;
     opacity: 80%
 }
-.transition-box-right{
+.transition-box-right-1{
     margin-bottom: 10px;
-    width: 18%;
-    height: 70%;
-    right: 0px;
-    top:15%;
-    border-radius: 4px;
-    background-color: #409EFF;
+    width: 98%;
+    height: 30%;
+    right: 1%;
+    top: 8%;
+    border-radius: 15px;
     text-align: center;
-    color: #fff;
-    padding: 40px 20px;
+    padding: 7px;
     box-sizing: border-box;
     position: absolute;
     background-repeat: round;
     pointer-events: none;
     z-index: 2;
-    opacity: 80%
+    opacity: 100%;
+    background-image: url('../../assets/监控01.png');
 }
 </style>
