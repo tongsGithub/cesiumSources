@@ -8,13 +8,54 @@
                     <div id="transition" class="transition-box-left-1"></div>
                     <div id="pie_show" class="transition-box-left-2"></div>
                 </div>
-                <div class="transition-box-right">
+                <div id="transitionBoxright" class="transition-box-right">
                     <h2>监控视频</h2>
-                    
                     <div class="transition-box-right-1">
-                        <h3>视角一</h3>
+                    </div>
+                    <div class="transition-box-right-2">
+                    </div>
+                    <div class="transition-box-right-3">
                     </div>
                 </div>
+
+                <div id="transitionBoxLeft1" class="transition-box-left1" style="display: none;">
+                    <h2>教学管理模块</h2>
+                </div>
+                <div id="transitionBoxright1" class="transition-box-right" style="display: none;">
+                    <h3>视角2</h3>
+                </div>
+
+                <div id="transitionBoxLeft2" class="transition-box-left1" style="display: none;">
+                    <h2>运维管理模块</h2>
+                </div>
+                <div id="transitionBoxright2" class="transition-box-right" style="display: none;">
+                    <h3>视角3</h3>
+                </div>
+
+                <div id="transitionBoxLeft3" class="transition-box-left1" style="display: none;">
+                    <h2>能源管理模块</h2>
+                </div>
+                <div id="transitionBoxright3" class="transition-box-right" style="display: none;">
+                    <h3>视角4</h3>
+                </div>
+
+                <div id="transitionBoxLeft4" class="transition-box-left1" style="display: none;">
+                    <h2>应急管理模块</h2>
+                </div>
+                <div id="transitionBoxright4" class="transition-box-right" style="display: none;">
+                    <h3>视角5</h3>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
                 <button id="bt0" class="map3d-bt0" v-on:click="CloseLeft0">
                     <h2 id="bt0h2" class="map3d-bt0-h2">安全管理</h2>
                 </button>
@@ -76,7 +117,19 @@ export default {
             });
         },
         CloseLeft0(){
+            //左侧子页面控制
             document.getElementById("transitionBoxLeft").style.display="inline";
+            document.getElementById("transitionBoxLeft1").style.display="none";
+            document.getElementById("transitionBoxLeft2").style.display="none";
+            document.getElementById("transitionBoxLeft3").style.display="none";
+            document.getElementById("transitionBoxLeft4").style.display="none";
+            //右侧子页面控制
+            document.getElementById("transitionBoxright").style.display="inline";
+            document.getElementById("transitionBoxright1").style.display="none";
+            document.getElementById("transitionBoxright2").style.display="none";
+            document.getElementById("transitionBoxright3").style.display="none";
+            document.getElementById("transitionBoxright4").style.display="none";
+
             document.getElementById("bt1").style.boxShadow ="0 0 0px #0b5ae3"; 
             document.getElementById("bt1h2").style.color = "#ffffff";
             document.getElementById("bt0").style.boxShadow = "0 0 20px #0b5ae3"
@@ -89,6 +142,18 @@ export default {
             document.getElementById("bt4h2").style.color = "#ffffff"; 
         },
         CloseLeft1(){
+            document.getElementById("transitionBoxLeft1").style.display="inline";
+            document.getElementById("transitionBoxLeft2").style.display="none";
+            document.getElementById("transitionBoxLeft").style.display="none";
+            document.getElementById("transitionBoxLeft3").style.display="none";
+            document.getElementById("transitionBoxLeft4").style.display="none";
+
+            document.getElementById("transitionBoxright1").style.display="inline";
+            document.getElementById("transitionBoxright2").style.display="none";
+            document.getElementById("transitionBoxright").style.display="none";
+            document.getElementById("transitionBoxright3").style.display="none";
+            document.getElementById("transitionBoxright4").style.display="none";
+
             document.getElementById("transitionBoxLeft").style.display="none";
             document.getElementById("bt0").style.boxShadow ="0 0 0px #0b5ae3"; 
             document.getElementById("bt0h2").style.color = "#ffffff";
@@ -102,6 +167,18 @@ export default {
             document.getElementById("bt4h2").style.color = "#ffffff";
         },
         CloseLeft2(){
+            document.getElementById("transitionBoxLeft2").style.display="inline";
+            document.getElementById("transitionBoxLeft1").style.display="none";
+            document.getElementById("transitionBoxLeft").style.display="none";
+            document.getElementById("transitionBoxLeft3").style.display="none";
+            document.getElementById("transitionBoxLeft4").style.display="none";
+
+            document.getElementById("transitionBoxright2").style.display="inline";
+            document.getElementById("transitionBoxright1").style.display="none";
+            document.getElementById("transitionBoxright").style.display="none";
+            document.getElementById("transitionBoxright3").style.display="none";
+            document.getElementById("transitionBoxright4").style.display="none";
+
             document.getElementById("bt1").style.boxShadow ="0 0 0px #0b5ae3"; 
             document.getElementById("bt1h2").style.color = "#ffffff";
             document.getElementById("bt2").style.boxShadow = "0 0 20px #0b5ae3"
@@ -114,6 +191,18 @@ export default {
             document.getElementById("bt4h2").style.color = "#ffffff";
         },
         CloseLeft3(){
+            document.getElementById("transitionBoxLeft2").style.display="none";
+            document.getElementById("transitionBoxLeft1").style.display="none";
+            document.getElementById("transitionBoxLeft").style.display="none";
+            document.getElementById("transitionBoxLeft4").style.display="none";
+            document.getElementById("transitionBoxLeft3").style.display="inline";
+
+            document.getElementById("transitionBoxright2").style.display="none";
+            document.getElementById("transitionBoxright1").style.display="none";
+            document.getElementById("transitionBoxright").style.display="none";
+            document.getElementById("transitionBoxright4").style.display="none";
+            document.getElementById("transitionBoxright3").style.display="inline";
+
             document.getElementById("bt2").style.boxShadow ="0 0 0px #0b5ae3"; 
             document.getElementById("bt2h2").style.color = "#ffffff";
             document.getElementById("bt3").style.boxShadow = "0 0 20px #0b5ae3"
@@ -126,6 +215,18 @@ export default {
             document.getElementById("bt4h2").style.color = "#ffffff";
         },
         CloseLeft4(){
+            document.getElementById("transitionBoxLeft2").style.display="none";
+            document.getElementById("transitionBoxLeft1").style.display="none";
+            document.getElementById("transitionBoxLeft").style.display="none";
+            document.getElementById("transitionBoxLeft3").style.display="none";
+            document.getElementById("transitionBoxLeft4").style.display="inline";
+
+            document.getElementById("transitionBoxright2").style.display="none";
+            document.getElementById("transitionBoxright1").style.display="none";
+            document.getElementById("transitionBoxright").style.display="none";
+            document.getElementById("transitionBoxright3").style.display="none";
+            document.getElementById("transitionBoxright4").style.display="inline";
+
             document.getElementById("bt3").style.boxShadow ="0 0 0px #0b5ae3"; 
             document.getElementById("bt3h2").style.color = "#ffffff";
             document.getElementById("bt4").style.boxShadow = "0 0 20px #0b5ae3"
@@ -446,6 +547,24 @@ export default {
     opacity: 80%;
     
 }
+.transition-box-left1 {
+    margin-bottom: 10px;
+    width: 20%;
+    height: 70%;
+    top: 15%;
+    border-radius: 10px;
+    background-color: #4e9ce6;
+    text-align: center;
+    color: #ffffff;
+    padding: 7px;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 80%;
+    
+}
 
 .transition-box-left-1 {
     width: 98%;
@@ -499,9 +618,43 @@ export default {
 .transition-box-right-1{
     margin-bottom: 10px;
     width: 98%;
-    height: 30%;
+    height: 25%;
     right: 1%;
-    top: 8%;
+    top: 12%;
+    border-radius: 15px;
+    text-align: center;
+    padding: 7px;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 100%;
+    background-image: url('../../assets/监控01.png');
+}
+.transition-box-right-2{
+    margin-bottom: 10px;
+    width: 98%;
+    height: 25%;
+    right: 1%;
+    top: 42%;
+    border-radius: 15px;
+    text-align: center;
+    padding: 7px;
+    box-sizing: border-box;
+    position: absolute;
+    background-repeat: round;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 100%;
+    background-image: url('../../assets/监控01.png');
+}
+.transition-box-right-3{
+    margin-bottom: 10px;
+    width: 98%;
+    height: 25%;
+    right: 1%;
+    top: 72%;
     border-radius: 15px;
     text-align: center;
     padding: 7px;
